@@ -1,0 +1,83 @@
+package Calisma;
+import java.util.Scanner;
+
+class Node{
+    String ad;
+    String soyad;
+    int no;
+    Node next;
+    Node prev;
+    
+    Node(String ad, String soyad, int no){
+        this.ad = ad;
+        this.soyad = soyad;
+        this.no = no;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+public class Calisma3 {
+    
+    public static void main (String[] args){
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Lütfen 3 isim giriniz: ");
+        String ad = input.next();
+        String ad2 = input.next();
+        String ad3 = input.next();
+
+        
+        System.out.println("Lütfen 3 soyad giriniz: ");
+        String soyad = input.next();
+        String soyad2 = input.next();
+        String soyad3 = input.next();
+
+        
+        System.out.println("Lütfen 3 numara giriniz: ");
+        int no = input.nextInt();
+        int no2 = input.nextInt();
+        int no3 = input.nextInt();
+
+        
+        Node a = new Node(ad, soyad, no);
+        Node b = new Node(ad2, soyad2, no2);
+        Node c = new Node(ad3, soyad3, no3);
+        
+        a.next = b;
+        b.next = c;
+        c.prev = b;
+        b.prev = a;
+        
+        Node start = a;
+        
+        
+        while(true){
+            System.out.println("Geçerli Düğüm: " + start.ad + " " + start.soyad + " " + start.no);
+            
+            System.out.println("İleri için (2), geri için (1) girin veya çıkmak için (0) girin:");
+            int yon = input.nextInt();
+            
+            if(yon == 1){
+                if(start.prev != null){
+                    start = start.prev;
+                }else{
+                    System.out.println("Başlagıç düğümündesin daha geri yok");
+                }
+            }else if(yon == 2){
+                if(start.next != null){
+                    start = start.next;
+                }else{
+                    System.out.println("Son düğümdesin ilerisi yok");
+                }
+            }else if(yon == 0){
+                System.out.println("Listeden çıkılıyor");
+                break;
+            }else{
+                System.out.println("Geçersiz sayı tekrar gir");
+            }
+        }
+        input.close();
+    }
+}
