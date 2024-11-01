@@ -1,0 +1,59 @@
+
+package Calisma;
+
+class Node{
+    int data;
+    Node next;
+    
+    Node(int data){
+        this.data = data;
+        this.next = next;
+    }
+}
+
+public class Calisma5 {
+    public static void main(String[] args){
+        
+        int a = 2;
+        int b = 4;
+        int c = 6;
+        int d = 8;
+        int e = 10;
+        
+        Node n1 = new Node(a);
+        Node n2 = new Node(b);
+        Node n3 = new Node(c);
+        Node n4 = new Node(d);
+        Node n5 = new Node(e);
+        
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        
+        Node start = n1;
+        
+        while(start != null){
+            System.out.println(start.data);
+            start = start.next;
+        }
+        
+        int size = 0;
+        start = n1;
+
+        while(start != null){
+            size++;
+            start = start.next;
+        }
+        
+        
+        int middleNode = size / 2;
+        start = n1;
+        
+        for (int i = 0; i < middleNode; i++) {
+            start = start.next;
+        }
+        
+        System.out.println("Listenin orta elemanı: "+ start.data);
+    }
+}
