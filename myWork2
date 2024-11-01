@@ -1,0 +1,67 @@
+
+package Calisma;
+
+class Node{
+    int data;
+    Node next;
+    Node prev;
+    
+    Node(int data){
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+public class calisma4 {
+    
+    public static void main(String[] args){
+        int a = 5;
+        int b = 26;
+        int c = 82;
+        int d = 91;
+        
+        Node n1 = new Node(a);
+        Node n2 = new Node(b);
+        Node n3 = new Node(c);
+        Node n4 = new Node(d);
+        
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        
+        n4.prev = n3;
+        n3.prev = n2;
+        n2.prev = n1;
+        
+        Node start = n1;
+        
+        
+        while(start != null){
+            System.out.println(start.data);
+            start = start.next;
+        }            
+       
+        
+        start = n1;  //Kod dışına çıkıldığı için heap de ki adresler silinir bu yüzden tekrar tanımlanmalı!
+        Node newHead = null;   //Burda da node listemiz yeni bir head ekleneceği için tanımlama yapıyoruz
+        
+        
+        while (start != null) {
+            Node temp = start.next;  // 1. Geçici değişkene mevcut düğümün `next` işaretçisini ata
+            start.next = start.prev; // 2. Mevcut düğümün `next` işaretçisini `prev` işaretçisi ile değiştir
+            start.prev = temp;       // 3. Mevcut düğümün `prev` işaretçisini geçici değişkenle (`temp`) değiştir
+
+            newHead = start;         // 4. Mevcut düğümü yeni baş olarak belirle (her seferinde son geçilen düğüm)
+            start = temp;            // 5. İlerlemek için `start`ı `temp`e (bir sonraki düğüme) ata
+        }
+
+        
+        start = newHead;
+        
+        System.out.println("Ters çevrilmiş liste:");
+        while(start != null){
+            System.out.println(start.data);
+            start = start.next;
+        }
+    }
+}
